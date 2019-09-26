@@ -8,7 +8,7 @@ export const Profile = observer(
         return (
             <View style={styles.main}>
                 <Text style={styles.text}>
-                    Yay! You're on the next page!!
+                    Login Page
                 </Text>
                 <View style={styles.button}>
                     <Button

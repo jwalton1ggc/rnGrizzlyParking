@@ -13,7 +13,7 @@ export class LoginDomain {
             && this.rootStore.LoginUI.password === "softwaredevelopment2")
             navigation.navigate("Profile");
         else
-            Alert.alert("Incorrect Login", "Please type in a better username and password", [
+            Alert.alert("Incorrect Login", "Please try again", [
                 { text: "Ok", onPress: () => { } },
             ]);
     }

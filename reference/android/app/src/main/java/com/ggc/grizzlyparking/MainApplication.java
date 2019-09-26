@@ -1,4 +1,4 @@
-package com.reference;
+package com.ggc.grizzlyparking;
 
 import android.app.Application;
 import android.util.Log;

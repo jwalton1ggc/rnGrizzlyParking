@@ -1,8 +1,43 @@
 import { observer } from 'mobx-react';
-import React from 'react';
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import { RootStoreContext } from '../stores/RootStore';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import auth from '@react-native-firebase/auth';
+import { firebase } from '@react-native-firebase/auth';
+import React, { useState, useEffect } from 'react';
+
+function App() {
+    // Set an initilizing state whilst Firebase connects
+    const [initilizing, setInitilizing] = useState(true);
+    const [user, setUser] = useState();
+   
+    // Handle user state changes
+    function onAuthStateChanged(user) {
+      setUser(user);
+      if (initilizing) setInitilizing(false);
+    }
+   
+    useEffect(() => {
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      return subscriber; // unsubscribe on unmount
+    }, []);
+   
+    if (initilizing) return null;
+   
+    if (!user) {
+      return (
+        <View>
+          <Text>Login</Text>
+        </View>
+      );
+    }
+   
+    return (
+      <View>
+        <Text>Welcome {user.email}</Text>
+      </View>
+    );
+  }
 
 export const Login = observer(
     ({ navigation, ...props }) => {
